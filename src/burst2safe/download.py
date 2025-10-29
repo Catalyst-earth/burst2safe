@@ -97,10 +97,10 @@ async def download_burst_url_async(session: aiohttp.ClientSession, url: str, fil
         print(f'Timeout error while downloading: {file_path}: {e}')
         file_path.unlink(missing_ok=True)
         raise
-    except Exception:
+    except Exception as e:
         print(f'Download failed for {file_path}')
         file_path.unlink(missing_ok=True)
-        raise
+        raise e
     finally:
         response.close()
 
